@@ -16,6 +16,7 @@
     "react-dom": "18.1.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "uuidv4": "^6.2.13",
     "zustand": "^4.0.0-rc.1"
   },
