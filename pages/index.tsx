@@ -1,6 +1,8 @@
 import type { NextPage } from 'next'
 import axios from 'axios'
 import { Video } from '../typings'
+import VideoCard from '../components/VideoCard'
+import NoResults from '../components/NoResults'
 
 interface Props {
   videos: Video[]
@@ -10,9 +12,15 @@ const Home = ({ videos }: Props) => {
   console.log(videos)
 
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="flex flex-col gap-10 h-full">
+      {videos.length ? (
+        videos.map((video: Video) => (
+          <VideoCard post={video} key={video._id}/>
+        ))
+      ) : (
+        <NoResults text={'No videos'}/>
+      )}
+    </div>
   )
 }
 
