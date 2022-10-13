@@ -22,6 +22,9 @@ export default function Detail({ postDetails }: VideoProps) {
   const [post, setPost] = useState(postDetails)
   const [playing, setPlaying] = useState<boolean>(false)
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false)
+  const [comment, setComment] = useState<string>('')
+  const [isPostingComment, setIsPostingComment] = useState<boolean>(false)
+
   const router = useRouter()
 
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -56,6 +59,23 @@ export default function Detail({ postDetails }: VideoProps) {
       })
 
       setPost({ ...post, likes: data.likes })
+    }
+  }
+
+  async function addComment(e: React.FormEvent){
+    e.preventDefault()
+
+    if(userProfile && comment){
+      setIsPostingComment(true)
+
+      const { data } = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post/${post._id}`, {
+        userId: userProfile._id,
+        comment
+      })
+
+      setPost({ ...post, comments: data.comments })
+      setComment('')
+      setIsPostingComment(false)
     }
   }
 
@@ -153,7 +173,13 @@ export default function Detail({ postDetails }: VideoProps) {
               />
             )}
           </div>
-          <Comments />
+          <Comments 
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            comments={post.comments}
+            isPostingComment={isPostingComment}
+          />
         </div>
       </div>
 
