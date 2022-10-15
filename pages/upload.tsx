@@ -71,12 +71,12 @@ export default function Upload({ }: Props) {
   }
 
   return (
-    <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
+    <div className="flex w-full h-full absolute left-0 top-[60px] mb-8 pt-10 lg:pt-20 bg-[#F8F8F8] justify-center">
       <div className="bg-white rounded-lg xl:h-[87vh] w-[70%] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
         <div>
           <div>
             <p className="text-2xl font-bold">Upload Video</p>
-            <p className="text-md text-gray-400 mt-1">Post a video to your account</p>
+            <p className="text-md text-gray-400 mt-1">Post a video to TikTok Clone</p>
           </div>
 
           <div className="border-dashed rouded-xl border-4 border-gray-200 flex flex-col justify-center items-center outline-none mt-10 w-[350px] h-[460px] p-10 cursor-pointer hover:border-[#3a0213] hover:bg-gray-100">
@@ -142,14 +142,14 @@ export default function Upload({ }: Props) {
             type="text"
             value={caption}
             onChange={(e) => setCaption(e.target.value)}
-            className="rounded outline-none text-md border-2 border-gray-200 p-2"
+            className="rounded outline-none text-md border-2 border-gray-200 p-2 focus:border-gray-700 focus:border-[3px]"
           />
           <label className="text-md font-medium">
             Choose a category
           </label>
           <select 
           onChange={(e) => setCategory(e.target.value)}
-          className="outline-none border-2 bg-white border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
+          className="outline-none border-2 bg-white border-gray-200 focus:border-gray-700 focus:border-[3px] text-md capitalize lg:p-4 p-2 rounded cursor-pointer"
           name="" 
           id=""
           >
@@ -166,16 +166,16 @@ export default function Upload({ }: Props) {
 
           <div className="flex gap-6 mt-10">
             <button
-              onClick={() => {}}
+              onClick={() => router.push('/')}
               type="button"
-              className="border-gray-800 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
+              className="border-gray-800 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none hover:bg-red-500/100 hover:text-white hover:border-red-500/100"
             >
               Cancel
             </button>
             <button
               onClick={handlePost}
               type="button"
-              className="bg-[#292728] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
+              className="bg-[#292728] hover:bg-[#444042] text-white hover:text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
               Post
             </button>
