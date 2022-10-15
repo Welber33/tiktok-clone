@@ -24,12 +24,18 @@ const Home = ({ videos }: Props) => {
   )
 }
 
-export async function getServerSideProps(){
-  const { data }  = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`);
+export async function getServerSideProps({ query: { topic }}: { query: { topic: string }}){
+  let res = null
+
+  if (topic) {
+    res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/discover/${topic}`);
+  } else {
+    res  = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post`);
+  }
 
   return {
     props: {
-      videos: data
+      videos: res.data
     }
   }
 }
